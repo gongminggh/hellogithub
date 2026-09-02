@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>易知 AI 陪练中心 · 可交互原型</title>
+<style>
+:root{--bg:#f7f7f5;--surface:#fff;--surface2:#f1f1ef;--text:#2c2c2b;--muted:#7d7a75;--border:#e6e5e3;--blue:#2783de;--blueSoft:#e5f2fc;--green:#46a171;--greenSoft:#e8f1ec;--orange:#d5803b;--orangeSoft:#fbebde;--red:#e56458;--redSoft:#fce9e7;--shadow:0 1px 2px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.04);--radius:10px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif}.app{display:grid;grid-template-columns:228px 1fr;min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;background:#fbfbfa;border-right:1px solid var(--border);padding:18px 14px;display:flex;flex-direction:column;z-index:8}.brand{display:flex;gap:10px;align-items:center;padding:6px 8px 20px}.brand-mark{width:32px;height:32px;border-radius:9px;background:var(--text);color:#fff;display:grid;place-items:center;font-weight:800}.brand b{display:block}.brand small{color:var(--muted)}.nav{display:grid;gap:4px}.nav button{border:0;background:transparent;color:var(--text);text-align:left;padding:10px 12px;border-radius:8px;cursor:pointer;display:flex;gap:10px;align-items:center;font:inherit;min-height:44px}.nav button:hover,.nav button.active{background:var(--surface2)}.nav .ico{width:20px;text-align:center;color:var(--muted)}.side-note{margin-top:auto;background:var(--blueSoft);border:1px solid #cde6f8;border-radius:10px;padding:12px;color:#235d8f}.side-note strong{display:block;margin-bottom:4px}.side-note small{display:block}.main{min-width:0}.topbar{height:64px;position:sticky;top:0;background:rgba(247,247,245,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:6}.crumb{font-size:14px;color:var(--muted)}.crumb strong{color:var(--text)}.top-actions{display:flex;gap:8px;align-items:center}.avatar{width:32px;height:32px;border-radius:50%;background:#dad9d7;display:grid;place-items:center;font-weight:700}.content{max-width:1180px;margin:auto;padding:28px 32px 64px}.screen{display:none}.screen.active{display:block}.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:24px}.eyebrow{font-size:13px;color:var(--blue);font-weight:700;margin-bottom:6px}.hero h1{font-size:30px;line-height:1.2;margin:0 0 8px;letter-spacing:-.6px}.hero p{margin:0;color:var(--muted);max-width:680px}.btn{appearance:none;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer;min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{background:#f6f6f4}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.primary:hover{background:#1d74c5}.btn.danger{color:var(--red)}.btn.ghost{background:transparent}.btn.small{padding:6px 10px;min-height:34px;font-size:13px}.grid{display:grid;gap:16px}.grid.stats{grid-template-columns:repeat(4,1fr)}.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}.card.shadow{box-shadow:var(--shadow)}.stat .label{color:var(--muted);font-size:13px}.stat .value{font-size:28px;font-weight:750;margin:6px 0 2px}.stat .delta{font-size:12px;color:var(--green)}.section-head{display:flex;justify-content:space-between;align-items:center;margin:28px 0 12px}.section-head h2{font-size:18px;margin:0}.section-head span{color:var(--muted);font-size:13px}.dashboard-grid{grid-template-columns:1.35fr .65fr}.chart{height:230px;display:flex;align-items:flex-end;gap:18px;padding:22px 10px 4px;border-bottom:1px solid var(--border);position:relative}.chart:before,.chart:after{content:"";position:absolute;left:0;right:0;border-top:1px dashed var(--border)}.chart:before{top:34%}.chart:after{top:66%}.bar-group{height:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;gap:5px;position:relative;z-index:1}.bar{width:13px;border-radius:5px 5px 1px 1px;background:#a9d3f4;transition:.3s}.bar.after{background:var(--blue)}.bar-label{position:absolute;bottom:-28px;font-size:12px;color:var(--muted);white-space:nowrap}.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:36px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}.donut-wrap{display:grid;place-items:center;height:210px}.donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--green) 0 79%,var(--surface2) 79%);display:grid;place-items:center}.donut:after{content:"79%\A任务完成率";white-space:pre;text-align:center;display:grid;place-items:center;width:108px;height:108px;background:#fff;border-radius:50%;font-weight:750;font-size:22px;line-height:1.4}.donut:after:first-line{font-size:12px}.list{display:grid;gap:10px}.list-item{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:8px}.list-icon{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:var(--blueSoft)}.list-main{flex:1;min-width:0}.list-main b{display:block}.list-main small{color:var(--muted)}.progress{height:6px;background:var(--surface2);border-radius:6px;overflow:hidden;margin-top:6px}.progress i{display:block;height:100%;background:var(--blue);border-radius:6px}.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:650;background:var(--surface2);color:var(--muted)}.badge.green{background:var(--greenSoft);color:#2f7754}.badge.orange{background:var(--orangeSoft);color:#965821}.badge.red{background:var(--redSoft);color:#aa463d}.badge.blue{background:var(--blueSoft);color:#226ba5}.builder{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px}.steps{padding:10px}.step{display:flex;gap:10px;padding:12px;border-radius:8px;cursor:pointer}.step:hover,.step.active{background:var(--surface2)}.step-num{width:24px;height:24px;border:1px solid var(--border);border-radius:50%;display:grid;place-items:center;font-size:12px;color:var(--muted);flex:0 0 auto}.step.active .step-num{background:var(--blue);border-color:var(--blue);color:#fff}.step b{display:block;font-size:14px}.step small{color:var(--muted)}.panel{display:none}.panel.active{display:block}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-weight:650;font-size:13px}.field small{color:var(--muted)}input,select,textarea{width:100%;border:1px solid var(--border);background:#fff;color:var(--text);border-radius:8px;padding:10px 11px;font:inherit;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blueSoft)}textarea{min-height:92px;resize:vertical}.role-card{display:flex;gap:16px;padding:16px;border:1px solid var(--border);border-radius:10px;background:#fcfcfb}.role-face{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#ddebf7,#f3e0d5);display:grid;place-items:center;font-size:30px;flex:0 0 auto}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.chip{border:1px solid var(--border);padding:5px 9px;border-radius:999px;font-size:12px;background:#fff}.flow{display:flex;align-items:center;gap:7px;overflow:auto;padding:8px 0 18px}.stage{min-width:124px;border:1px solid var(--border);border-radius:8px;padding:11px;text-align:center;background:#fff}.arrow{color:#aaa}.rubric-row{display:grid;grid-template-columns:1.3fr 1fr 80px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}.rubric-row:last-child{border-bottom:0}.toggle{position:relative;width:42px;height:24px;border-radius:99px;background:#c9c8c5;cursor:pointer;display:inline-block}.toggle:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}.toggle.on{background:var(--blue)}.toggle.on:after{left:21px}.train-shell{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}.conversation{height:610px;padding:0;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}.scene-head{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.person{display:flex;align-items:center;gap:11px}.mini-face{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ddebf7,#f3e0d5);font-size:21px}.person small{display:block;color:var(--muted)}.mood{font-size:12px;color:var(--orange)}.chat{overflow:auto;padding:22px;display:flex;flex-direction:column;gap:15px;background:linear-gradient(#fff,#fdfdfc)}.bubble-row{display:flex;gap:9px;max-width:82%}.bubble-row.me{align-self:flex-end;flex-direction:row-reverse}.bubble-avatar{width:28px;height:28px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;font-size:12px;flex:0 0 auto}.bubble{border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:10px 12px;background:#fff}.me .bubble{background:var(--blueSoft);border-color:#c8e2f5;border-radius:12px 4px 12px 12px}.bubble small{display:block;color:var(--muted);margin-top:5px}.composer{border-top:1px solid var(--border);padding:14px 16px;background:#fff}.composer-actions{display:flex;gap:8px;align-items:center}.fake-input{flex:1;border:1px solid var(--border);border-radius:8px;height:44px;display:flex;align-items:center;padding:0 12px;color:var(--muted);cursor:pointer}.mic{width:48px;height:48px;border-radius:50%;border:0;background:var(--blue);color:#fff;cursor:pointer;font-size:19px}.mic.listening{animation:pulse 1.2s infinite;background:var(--red)}@keyframes pulse{50%{box-shadow:0 0 0 10px var(--redSoft)}}.coach-panel{display:grid;align-content:start;gap:16px}.goal-row{display:flex;align-items:center;gap:9px;padding:8px 0}.goal-check{width:20px;height:20px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-size:12px;color:transparent}.goal-check.done{background:var(--green);border-color:var(--green);color:white}.hint{background:var(--orangeSoft);border:1px solid #f1d1b6;border-radius:8px;padding:12px;color:#7d4c23;display:none}.hint.show{display:block}.report-head{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center}.score-ring{width:180px;height:180px;border-radius:50%;background:conic-gradient(var(--blue) 0 82%,var(--surface2) 82%);display:grid;place-items:center;margin:auto}.score-ring>div{width:132px;height:132px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}.score-ring strong{font-size:40px;line-height:1}.score-ring small{color:var(--muted)}.score-bars{display:grid;gap:13px}.score-line{display:grid;grid-template-columns:120px 1fr 38px;align-items:center;gap:10px}.score-line span{font-size:13px}.evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.quote-card{padding:16px;border-radius:9px;border:1px solid var(--border)}.quote-card.good{background:var(--greenSoft);border-color:#cfe4d8}.quote-card.bad{background:var(--redSoft);border-color:#f0cac6}.quote-card strong{display:block;margin-bottom:8px}.quote-card p{margin:0 0 8px}.quote-card small{color:var(--muted)}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--border);font-size:13px}th{color:var(--muted);font-weight:600}.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.28);display:none;place-items:center;z-index:20;padding:20px}.modal-backdrop.show{display:grid}.modal{width:min(520px,100%);background:#fff;border-radius:12px;border:1px solid var(--border);box-shadow:0 18px 60px rgba(0,0,0,.18);padding:22px}.modal h3{margin:0 0 6px}.modal p{color:var(--muted);margin:0 0 18px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.toast{position:fixed;right:24px;bottom:24px;background:#242423;color:#fff;border-radius:8px;padding:12px 16px;box-shadow:var(--shadow);transform:translateY(30px);opacity:0;transition:.25s;z-index:30}.toast.show{transform:translateY(0);opacity:1}.mobile-nav{display:none}.empty-note{text-align:center;color:var(--muted);padding:30px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:900px){body{overflow:hidden;height:100vh;height:100dvh;display:grid;grid-template-rows:minmax(0,1fr) 58px}.app{grid-template-columns:1fr;min-height:0;height:auto;overflow:auto}.sidebar{display:none}.topbar{padding:0 18px}.content{padding:22px 18px 88px}.grid.stats{grid-template-columns:1fr 1fr}.dashboard-grid,.builder,.train-shell{grid-template-columns:1fr}.steps{display:flex;overflow:auto}.step{min-width:160px}.conversation{height:620px}.coach-panel{grid-template-columns:1fr 1fr}.mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);position:static;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);z-index:12}.mobile-nav button{border:0;background:transparent;padding:10px 4px;color:var(--muted);min-height:58px;font-size:12px}.mobile-nav button.active{color:var(--blue)}}
+@media(max-width:620px){.hero{align-items:flex-start;flex-direction:column}.hero h1{font-size:25px}.grid.stats,.form-grid,.evidence-grid,.report-head,.coach-panel{grid-template-columns:1fr}.top-actions .btn{display:none}.dashboard-grid{grid-template-columns:1fr}.report-head{text-align:center}.rubric-row{grid-template-columns:1fr 70px}.rubric-row select{grid-column:1/-1}.score-line{grid-template-columns:92px 1fr 34px}.bubble-row{max-width:94%}.content{padding-left:14px;padding-right:14px}.topbar{height:56px}.chart{gap:8px}.bar{width:10px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">易</div><div><b>AI 陪练中心</b><small>企业能力训练平台</small></div></div>
+  <nav class="nav" aria-label="主导航">
+    <button class="active" data-screen="dashboard"><span class="ico">◫</span>训练总览</button>
+    <button data-screen="builder"><span class="ico">◇</span>场景配置</button>
+    <button data-screen="training"><span class="ico">◉</span>学员训练</button>
+    <button data-screen="report"><span class="ico">▥</span>训练报告</button>
+  </nav>
+  <div class="side-note"><strong>设计主线</strong><small>能力目标 → 场景任务 → 行为证据 → 自适应补救</small></div>
+</aside>
+<main class="main">
+<header class="topbar"><div class="crumb">学习管理后台 / <strong id="crumbTitle">训练总览</strong></div><div class="top-actions"><button class="btn small" id="previewBtn">切换学员视角</button><div class="avatar">明</div></div></header>
+<div class="content">
+<section class="screen active" id="dashboard">
+  <div class="hero"><div><div class="eyebrow">AI COACHING</div><h1>把课程知识转化为岗位行为</h1><p>统一管理场景、角色、训练任务与行为证据，持续追踪组织能力变化。</p></div><button class="btn primary" data-go="builder">＋ 新建陪练场景</button></div>
+  <div class="grid stats">
+    <div class="card stat"><div class="label">本月参训人数</div><div class="value">1,284</div><div class="delta">↑ 12.6% 较上月</div></div>
+    <div class="card stat"><div class="label">任务完成率</div><div class="value">79%</div><div class="delta">↑ 6.2 个百分点</div></div>
+    <div class="card stat"><div class="label">平均能力提升</div><div class="value">+18</div><div class="delta">首次练习至末次</div></div>
+    <div class="card stat"><div class="label">待人工复核</div><div class="value">23</div><div class="delta" style="color:var(--orange)">7 条高风险记录</div></div>
+  </div>
+  <div class="section-head"><h2>能力提升趋势</h2><span>近 6 周 · 训练前 / 训练后</span></div>
+  <div class="grid dashboard-grid">
+    <div class="card"><div class="chart" aria-label="能力提升柱状图">
+      <div class="bar-group"><i class="bar" style="height:42%"></i><i class="bar after" style="height:61%"></i><span class="bar-label">第1周</span></div>
+      <div class="bar-group"><i class="bar" style="height:48%"></i><i class="bar after" style="height:68%"></i><span class="bar-label">第2周</span></div>
+      <div class="bar-group"><i class="bar" style="height:52%"></i><i class="bar after" style="height:73%"></i><span class="bar-label">第3周</span></div>
+      <div class="bar-group"><i class="bar" style="height:55%"></i><i class="bar after" style="height:76%"></i><span class="bar-label">第4周</span></div>
+      <div class="bar-group"><i class="bar" style="height:58%"></i><i class="bar after" style="height:80%"></i><span class="bar-label">第5周</span></div>
+      <div class="bar-group"><i class="bar" style="height:62%"></i><i class="bar after" style="height:84%"></i><span class="bar-label">第6周</span></div>
+    </div><div class="legend"><span><i class="dot" style="background:#a9d3f4"></i>训练前</span><span><i class="dot" style="background:var(--blue)"></i>训练后</span></div></div>
+    <div class="card"><div class="donut-wrap"><div class="donut"></div></div><div class="legend" style="justify-content:center;margin-top:0"><span><i class="dot" style="background:var(--green)"></i>已完成 1,014</span><span><i class="dot" style="background:var(--surface2)"></i>未完成 270</span></div></div>
+  </div>
+  <div class="section-head"><h2>重点训练计划</h2><span>按风险与截止时间排序</span></div>
+  <div class="card list">
+    <div class="list-item"><div class="list-icon">☎</div><div class="list-main"><b>高净值客户异议处理</b><small>客户经理 · 436人 · 截止 9月10日</small><div class="progress"><i style="width:83%"></i></div></div><span class="badge green">完成 83%</span></div>
+    <div class="list-item"><div class="list-icon" style="background:var(--orangeSoft)">⚠</div><div class="list-main"><b>岸桥紧急下降处置</b><small>设备操作岗 · 128人 · 含安全红线</small><div class="progress"><i style="width:68%;background:var(--orange)"></i></div></div><span class="badge orange">风险关注</span></div>
+    <div class="list-item"><div class="list-icon" style="background:var(--greenSoft)">◎</div><div class="list-main"><b>新经理绩效反馈</b><small>基层管理者 · 220人 · 截止 9月18日</small><div class="progress"><i style="width:57%;background:var(--green)"></i></div></div><span class="badge blue">进行中</span></div>
+  </div>
+</section>
+
+<section class="screen" id="builder">
+  <div class="hero"><div><div class="eyebrow">SCENARIO BUILDER</div><h1>创建陪练场景</h1><p>通过结构化配置控制角色行为、对话阶段与评分标准，而不是依赖一段不可控的提示词。</p></div><div><button class="btn" id="saveDraft">保存草稿</button> <button class="btn primary" id="publishBtn">发布计划</button></div></div>
+  <div class="builder">
+    <div class="card steps">
+      <div class="step active" data-step="1"><span class="step-num">1</span><div><b>基本信息</b><small>目标与模式</small></div></div>
+      <div class="step" data-step="2"><span class="step-num">2</span><div><b>AI角色</b><small>身份与性格</small></div></div>
+      <div class="step" data-step="3"><span class="step-num">3</span><div><b>对话流程</b><small>阶段与条件</small></div></div>
+      <div class="step" data-step="4"><span class="step-num">4</span><div><b>评分量规</b><small>行为与红线</small></div></div>
+    </div>
+    <div class="card shadow">
+      <div class="panel active" data-panel="1">
+        <div class="section-head" style="margin-top:0"><h2>基本信息</h2><span class="badge blue">自由场景陪练</span></div>
+        <div class="form-grid">
+          <div class="field full"><label for="sceneName">场景名称</label><input id="sceneName" value="高净值客户异议处理：再考虑一下" /></div>
+          <div class="field"><label for="job">适用岗位</label><select id="job"><option>客户经理</option><option>客服专员</option><option>基层管理者</option></select></div>
+          <div class="field"><label for="mode">训练模式</label><select id="mode"><option>练习模式（允许提示）</option><option>考试模式（禁止提示）</option></select></div>
+          <div class="field full"><label for="goal">训练目标</label><textarea id="goal">识别客户“再考虑一下”背后的真实顾虑，通过共情、追问与方案匹配，形成明确的下一步行动。</textarea></div>
+          <div class="field"><label for="rounds">最大对话轮数</label><input id="rounds" type="number" value="12" min="4" max="30" /></div>
+          <div class="field"><label for="duration">建议时长</label><select id="duration"><option>8 分钟</option><option>10 分钟</option><option>15 分钟</option></select></div>
+          <div class="field full"><label>训练策略</label><div class="role-card"><div style="flex:1"><b>低质量回答自动追问</b><small style="display:block;color:var(--muted)">准确率低或未命中关键行为时，最多追加一次引导追问</small></div><span class="toggle on" tabindex="0" role="switch" aria-checked="true"></span></div></div>
+        </div>
+      </div>
+      <div class="panel" data-panel="2">
+        <div class="section-head" style="margin-top:0"><h2>AI角色设置</h2><button class="btn small">从角色库选择</button></div>
+        <div class="role-card"><div class="role-face">👤</div><div><b>王总 · 制造企业负责人</b><div style="color:var(--muted);margin-top:3px">预算谨慎，对风险敏感，不喜欢被强行推销</div><div class="chips"><span class="chip">理性</span><span class="chip">防备</span><span class="chip">时间有限</span><span class="chip">决策人</span></div></div></div>
+        <div class="form-grid" style="margin-top:18px">
+          <div class="field"><label>初始情绪</label><select><option>谨慎 · 轻度防备</option><option>平静</option><option>不耐烦</option></select></div>
+          <div class="field"><label>AI回复风格</label><select><option>3级 · 中性真实</option><option>1级 · 严格</option><option>5级 · 鼓励</option></select></div>
+          <div class="field full"><label>隐藏顾虑</label><textarea>担心投入后员工使用率低；上一次采购的软件落地效果一般。只有学员通过追问才能获得这些信息。</textarea></div>
+          <div class="field full"><label>可被说服条件</label><textarea>学员能够先共情、指出低使用率的真实原因，并给出分阶段试点方案与可量化验收指标。</textarea></div>
+        </div>
+      </div>
+      <div class="panel" data-panel="3">
+        <div class="section-head" style="margin-top:0"><h2>对话状态机</h2><span>点击阶段查看规则</span></div>
+        <div class="flow"><div class="stage">开场<br><small>1轮</small></div><span class="arrow">→</span><div class="stage">建立关系<br><small>1–2轮</small></div><span class="arrow">→</span><div class="stage" style="border-color:var(--blue);background:var(--blueSoft)">需求探索<br><small>2–4轮</small></div><span class="arrow">→</span><div class="stage">关键异议<br><small>2–3轮</small></div><span class="arrow">→</span><div class="stage">推动行动<br><small>1–2轮</small></div></div>
+        <div class="form-grid">
+          <div class="field full"><label>当前阶段目标：需求探索</label><textarea>引导学员通过开放式问题识别客户对投入产出和员工使用率的担忧；AI 不主动说出隐藏顾虑。</textarea></div>
+          <div class="field"><label>进入条件</label><select><option>已完成开场并说明沟通目的</option></select></div>
+          <div class="field"><label>离开条件</label><select><option>命中 ≥ 2 个需求信息点</option></select></div>
+          <div class="field full"><label>失败策略</label><select><option>连续两轮直接推销 → AI提高防备并提出“先这样吧”</option></select></div>
+        </div>
+      </div>
+      <div class="panel" data-panel="4">
+        <div class="section-head" style="margin-top:0"><h2>评分量规</h2><span>总权重 100%</span></div>
+        <div class="rubric-row"><div><b>需求洞察</b><small style="display:block;color:var(--muted)">开放提问、总结确认、识别真实顾虑</small></div><select><option>模型＋规则</option></select><input value="30%" /></div>
+        <div class="rubric-row"><div><b>任务完成度</b><small style="display:block;color:var(--muted)">形成明确下一步行动</small></div><select><option>状态机规则</option></select><input value="25%" /></div>
+        <div class="rubric-row"><div><b>方案针对性</b><small style="display:block;color:var(--muted)">方案与客户需求相关</small></div><select><option>知识库校验</option></select><input value="20%" /></div>
+        <div class="rubric-row"><div><b>沟通与共情</b><small style="display:block;color:var(--muted)">回应情绪，不施压</small></div><select><option>语义量规</option></select><input value="15%" /></div>
+        <div class="rubric-row"><div><b>合规表达</b><small style="display:block;color:var(--muted)">不夸大效果、不做违规承诺</small></div><select><option>红线规则</option></select><input value="10%" /></div>
+        <div class="card" style="margin-top:16px;background:var(--redSoft);border-color:#efcac6"><div style="display:flex;justify-content:space-between;gap:12px"><div><b>一票否决规则</b><small style="display:block;color:#8e4a44">承诺“保证100%完成率”或泄露其他客户数据</small></div><span class="toggle on" tabindex="0" role="switch" aria-checked="true"></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="training">
+  <div class="hero"><div><div class="eyebrow">LEARNER PRACTICE</div><h1>高净值客户异议处理</h1><p>你的任务：识别王总的真实顾虑，并推动形成明确的下一步行动。</p></div><span class="badge green">练习模式 · 可提示</span></div>
+  <div class="train-shell">
+    <div class="card shadow conversation">
+      <div class="scene-head"><div class="person"><div class="mini-face">👤</div><div><b>王总</b><small>制造企业负责人 · 第 <span id="roundNum">1</span>/12 轮</small></div></div><div class="mood" id="mood">情绪：谨慎</div></div>
+      <div class="chat" id="chat" aria-live="polite"><div class="bubble-row"><div class="bubble-avatar">王</div><div class="bubble">方案我大概了解了，不过我们还想再考虑一下，暂时不急着决定。<small>09:02</small></div></div></div>
+      <div class="composer"><div class="hint" id="hintBox">提示：先不要急着介绍功能，可以通过开放式问题了解客户是在担心预算、落地效果，还是内部决策流程。</div><div class="composer-actions"><button class="btn small" id="hintBtn">💡 获取提示</button><div class="fake-input" id="textRespond">点击输入示例回答…</div><button class="mic" id="micBtn" aria-label="开始语音回答">●</button></div></div>
+    </div>
+    <aside class="coach-panel">
+      <div class="card"><b>当前阶段</b><div style="margin:8px 0 4px;font-size:18px;font-weight:750" id="stageText">需求探索</div><small style="color:var(--muted)">找到“再考虑一下”背后的真实原因</small><div class="progress" style="margin-top:12px"><i id="stageProgress" style="width:22%"></i></div></div>
+      <div class="card"><b>行为目标</b><div class="goal-row"><span class="goal-check" id="g1">✓</span><span>先共情，不急于反驳</span></div><div class="goal-row"><span class="goal-check" id="g2">✓</span><span>提出开放式问题</span></div><div class="goal-row"><span class="goal-check" id="g3">✓</span><span>总结并确认顾虑</span></div><div class="goal-row"><span class="goal-check" id="g4">✓</span><span>形成下一步行动</span></div></div>
+      <div class="card"><b>训练说明</b><p style="margin:8px 0;color:var(--muted)">系统会记录关键行为和原始对话，用于生成可解释的训练报告。</p><button class="btn danger" id="finishBtn" style="width:100%">结束并生成报告</button></div>
+    </aside>
+  </div>
+</section>
+
+<section class="screen" id="report">
+  <div class="hero"><div><div class="eyebrow">EVIDENCE-BASED REPORT</div><h1>训练报告</h1><p>每项结论都可以回溯到原始对话、行为指标与评分量规。</p></div><div><button class="btn" data-go="training">重新练习</button> <button class="btn primary" id="targetPractice">针对性重练</button></div></div>
+  <div class="card shadow report-head">
+    <div class="score-ring"><div><div><strong id="finalScore">82</strong><small>综合得分 · 通过</small></div></div></div>
+    <div><h2 style="margin:0 0 6px">你已完成核心任务，但需求确认还可更深入</h2><p style="margin:0 0 18px;color:var(--muted)">你能够先回应客户情绪，并识别对方对“员工使用率”的担忧；建议在给出方案前，再使用一句总结确认。</p><div class="score-bars">
+      <div class="score-line"><span>需求洞察</span><div class="progress"><i style="width:76%"></i></div><b>76</b></div>
+      <div class="score-line"><span>任务完成度</span><div class="progress"><i style="width:88%;background:var(--green)"></i></div><b>88</b></div>
+      <div class="score-line"><span>方案针对性</span><div class="progress"><i style="width:84%"></i></div><b>84</b></div>
+      <div class="score-line"><span>沟通与共情</span><div class="progress"><i style="width:86%;background:var(--green)"></i></div><b>86</b></div>
+      <div class="score-line"><span>合规表达</span><div class="progress"><i style="width:100%;background:var(--green)"></i></div><b>100</b></div>
+    </div></div>
+  </div>
+  <div class="section-head"><h2>关键对话证据</h2><span>模型置信度 0.89 · 无需人工复核</span></div>
+  <div class="evidence-grid">
+    <div class="quote-card good"><strong>✓ 做得好 · 共情</strong><p>“能理解您希望再稳妥评估一下，尤其之前有过系统落地不理想的经历。”</p><small>命中行为：回应客户情绪 · 第2轮 · 置信度 0.94</small></div>
+    <div class="quote-card bad"><strong>△ 可以改进 · 需求确认</strong><p>你识别出使用率顾虑后直接介绍了试点方案，没有先总结并确认。</p><small>建议表达：“也就是说，您最关注的不是采购价格，而是上线后的实际使用效果，对吗？”</small></div>
+  </div>
+  <div class="section-head"><h2>下一步训练建议</h2><span>由薄弱行为自动生成</span></div>
+  <div class="card list">
+    <div class="list-item"><div class="list-icon" style="background:var(--orangeSoft)">1</div><div class="list-main"><b>只练“总结确认”环节</b><small>预计 3 分钟 · AI将更换一种客户顾虑</small></div><button class="btn small" data-go="training">开始</button></div>
+    <div class="list-item"><div class="list-icon">2</div><div class="list-main"><b>关闭提示完整重练</b><small>预计 8 分钟 · 难度提升至4级</small></div><button class="btn small" data-go="training">开始</button></div>
+    <div class="list-item"><div class="list-icon" style="background:var(--greenSoft)">3</div><div class="list-main"><b>学习高分标杆案例</b><small>同岗位优秀案例 · 已获本人授权并匿名</small></div><button class="btn small" id="playCase">播放</button></div>
+  </div>
+</section>
+</div>
+</main>
+</div>
+<nav class="mobile-nav" aria-label="移动导航"><button class="active" data-screen="dashboard">总览</button><button data-screen="builder">配置</button><button data-screen="training">训练</button><button data-screen="report">报告</button></nav>
+<div class="modal-backdrop" id="publishModal"><div class="modal"><h3>发布陪练计划</h3><p>场景将下发给“客户经理”岗位，共 436 人。</p><div class="form-grid"><div class="field"><label>开始时间</label><input type="date" value="2026-09-02" /></div><div class="field"><label>截止时间</label><input type="date" value="2026-09-10" /></div><div class="field full"><label>提醒策略</label><select><option>发布时＋截止前3天＋逾期后1天</option><option>仅发布时提醒</option></select></div></div><div class="modal-actions"><button class="btn" id="cancelPublish">取消</button><button class="btn primary" id="confirmPublish">确认发布</button></div></div></div>
+<div class="toast" id="toast" role="status">已保存</div>
+<script>
+const titles={dashboard:'训练总览',builder:'场景配置',training:'学员训练',report:'训练报告'};
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('[data-screen]').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));document.getElementById('crumbTitle').textContent=titles[id];window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('[data-screen],[data-go]').forEach(b=>b.addEventListener('click',()=>showScreen(b.dataset.screen||b.dataset.go)));
+document.getElementById('previewBtn').addEventListener('click',()=>showScreen('training'));
+document.querySelectorAll('.step').forEach(step=>step.addEventListener('click',()=>{document.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));step.classList.add('active');document.querySelector(`[data-panel="${step.dataset.step}"]`).classList.add('active')}));
+document.querySelectorAll('.toggle').forEach(t=>{const flip=()=>{t.classList.toggle('on');t.setAttribute('aria-checked',t.classList.contains('on'))};t.addEventListener('click',flip);t.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();flip()}})});
+const toast=document.getElementById('toast');function notify(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2100)}
+document.getElementById('saveDraft').addEventListener('click',()=>notify('草稿已保存'));
+const modal=document.getElementById('publishModal');document.getElementById('publishBtn').addEventListener('click',()=>modal.classList.add('show'));document.getElementById('cancelPublish').addEventListener('click',()=>modal.classList.remove('show'));document.getElementById('confirmPublish').addEventListener('click',()=>{modal.classList.remove('show');notify('训练计划已发布给 436 人')});modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
+const hint=document.getElementById('hintBox');document.getElementById('hintBtn').addEventListener('click',()=>hint.classList.toggle('show'));
+const scripted=[
+ {me:'王总，理解您需要谨慎评估。方便说说您现在最担心的是哪一部分吗？',ai:'主要还是担心买了之后大家不用。之前我们上过一个系统，最后使用率很低。',goal:'g1',mood:'情绪：愿意说明',stage:'需求探索',p:42},
+ {me:'听起来您更关注的不是采购本身，而是上线后能否真正产生使用效果，对吗？',ai:'对。功能再多，如果员工不愿意用，也没有意义。你们怎么解决这个问题？',goal:'g2',mood:'情绪：关注方案',stage:'需求确认',p:64},
+ {me:'我们可以先选一个业务团队做四周试点，以周活跃率和关键任务完成率作为验收指标，再决定是否扩大范围。',ai:'小范围试点听起来风险可控。你可以把试点计划发给我，我们下周二再沟通一次。',goal:'g3',mood:'情绪：积极',stage:'推动行动',p:88},
+ {me:'好的，我今天发试点方案，并预约下周二上午十点与您确认结果。',ai:'可以，就按这个安排。',goal:'g4',mood:'情绪：达成共识',stage:'完成',p:100}
+];let turn=0,round=1,responding=false;const chat=document.getElementById('chat');
+function bubble(text,me=false){const row=document.createElement('div');row.className='bubble-row'+(me?' me':'');row.innerHTML=`<div class="bubble-avatar">${me?'我':'王'}</div><div class="bubble">${text}<small>09:${String(2+round).padStart(2,'0')}</small></div>`;chat.appendChild(row);chat.scrollTop=chat.scrollHeight}
+function doTurn(){if(responding)return;if(turn>=scripted.length){notify('本次训练已完成，可生成报告');return}responding=true;const s=scripted[turn];bubble(s.me,true);document.getElementById('textRespond').textContent='AI 正在组织回应…';setTimeout(()=>{bubble(s.ai);document.getElementById(s.goal).classList.add('done');document.getElementById('mood').textContent=s.mood;document.getElementById('stageText').textContent=s.stage;document.getElementById('stageProgress').style.width=s.p+'%';round+=2;document.getElementById('roundNum').textContent=Math.min(round,12);turn++;document.getElementById('textRespond').textContent=turn<scripted.length?'点击输入示例回答…':'训练目标已达成';responding=false},650)}
+document.getElementById('textRespond').addEventListener('click',doTurn);const mic=document.getElementById('micBtn');mic.addEventListener('click',()=>{if(responding)return;mic.classList.add('listening');mic.textContent='■';setTimeout(()=>{mic.classList.remove('listening');mic.textContent='●';doTurn()},900)});
+document.getElementById('finishBtn').addEventListener('click',()=>{document.getElementById('finalScore').textContent=turn>=3?'82':turn===2?'74':'68';showScreen('report');notify('训练报告已生成')});
+document.getElementById('targetPractice').addEventListener('click',()=>{showScreen('training');notify('已切换为“总结确认”专项训练')});document.getElementById('playCase').addEventListener('click',e=>{e.target.textContent=e.target.textContent==='播放'?'暂停':'播放';notify(e.target.textContent==='暂停'?'正在播放匿名标杆案例':'已暂停播放')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('show')});
+</script>
+</body>
+</html>
